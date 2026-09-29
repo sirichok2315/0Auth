@@ -18,17 +18,17 @@ export default async function DeleteProductPage({
   } 
  
   const { id } = await params; 
-  const product = getProduct(id); 
+  const product = await getProduct(Number(id)); 
   if (!product) { 
     notFound(); 
   } 
  
-  const deleteAction = deleteProductAction.bind(null, product.id); 
+  const deleteAction = deleteProductAction.bind(null, String(product.id)); 
  
   return ( 
     <main> 
       <h1>ยืนยันการลบ</h1> 
-      <p>ต้องการลบสินค้า “{product.name}” หรือไม่?</p> 
+      <p>ต้องการลบสินค้า “{product.title}” หรือไม่?</p>
       <div> 
         <form action={deleteAction}> 
           <button type="submit">ยืนยันการลบ</button> 

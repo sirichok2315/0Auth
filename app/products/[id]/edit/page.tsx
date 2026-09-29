@@ -38,7 +38,7 @@ export default async function EditProductPage({
 
     const { id } = await params;
 
-    const product = getProduct(id);
+    const product = await getProduct(Number(id));
 
     if (!product) {
 
@@ -50,7 +50,7 @@ export default async function EditProductPage({
 
     // เติม: เมธอดที่ผูกอาร์กิวเมนต์แรกให้ฟังก์ชันไว้ล่วงหน้า 
 
-    const updateAction = updateProductAction.bind(null, product.id);
+    const updateAction = updateProductAction.bind(null, String(product.id));
 
 
 
@@ -66,7 +66,7 @@ export default async function EditProductPage({
 
                     <label htmlFor="name">ชื่อสินค้า</label>
 
-                    <input id="name" name="name" defaultValue={product.name} required />
+                    <input id="name" name="name" defaultValue={product.title} required />
 
                 </div>
 
