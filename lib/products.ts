@@ -113,3 +113,10 @@ export async function deleteProduct(id: number | string) {
   console.log("Deleting product:", id);
   return { success: true };
 }
+
+// ฟังก์ชันค้นหาสินค้าตาม ID สำหรับหน้าแก้ไขและลบสินค้า
+export async function getProduct(id: number): Promise<Product | null> {
+    const list = await fetchProducts(defaultQuery);
+    const product = list.products.find(p => p.id === id);
+    return product || null;
+}
